@@ -3,7 +3,7 @@ date: 2015-06-04 11:44:27
 tags: [Linux]
 ---
 
-##概念
+## 概念
 
 - **/etc/profile**：此文件为系统的每个用户设置环境信息，当用户第一次登录时，该文件被执行。
 并从/etc/profile.d目录的配置文件中搜集shell的设置。
@@ -26,7 +26,7 @@ tags: [Linux]
 
 通常二者设置大致相同，所以通常前者会调用后者。
 
-##执行顺序
+## 执行顺序
 
 在刚登录Linux时，首先启动 **/etc/profile** 文件，然后再启动用户目录下的 **~/.bash_profile**、 **~/.bash_login** 或 **~/.profile** 文件中的其中一个(根据不同的linux操作系统的不同，命名不一样)， 
 
@@ -53,7 +53,7 @@ tags: [Linux]
 
 执行顺序为：/etc/profile -> (~/.bash_profile | ~/.bash_login | ~/.profile) -> ~/.bashrc -> /etc/bashrc -> ~/.bash_logout
 
-##环境变量
+## 环境变量
 
 **/etc/profile** 和 **/etc/environment** 等各种环境变量设置文件的用处
 

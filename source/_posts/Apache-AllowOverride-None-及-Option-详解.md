@@ -3,7 +3,7 @@ date: 2015-06-03 16:04:03
 tags: [Apache]
 ---
 
-##AllowOverride
+## AllowOverride
 
 AllowOverride参数就是指明Apache服务器是否去找.htaccess文件作为配置文件，如果设置为None,那么服务器将忽略.htacess文件，如果设置为All,那么所有在.htaccess文件里有的指令都将被重写。对于AllowOverride，还可以对它指定如下一些能被重写的指令类型。
 <!-- more -->
@@ -13,7 +13,7 @@ AllowOverride参数就是指明Apache服务器是否去找.htaccess文件作为�
 		AllowOverride None 
 	</Directory> 
 
-##Options Indexes FollowSymLinks
+## Options Indexes FollowSymLinks
 
 *Options Indexes FollowSymLinks* 是来控制 Apache 是否显示目录列表
 

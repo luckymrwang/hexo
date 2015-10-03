@@ -5,7 +5,7 @@ tags: [Apache,Mac]
 
 环境是在Macbook Pro中自带的Apache,路径为 **/etc/apache2**
 
-##现象
+## 现象
 
 - 在浏览器中显示：
 
@@ -15,7 +15,7 @@ tags: [Apache,Mac]
 
 	access to /bi/ga/applist denied (filesystem path '/Users/sino/Documents/gitlab') because search permissions are missing on a component of the path
 
-##排查
+## 排查
 
 1. **http.conf**配置文件中的**DocumentRoot** 已经设置好
 

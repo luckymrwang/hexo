@@ -3,11 +3,11 @@ date: 2015-07-13 19:27:34
 tags: [Jquery]
 ---
 
-##问题描述
+## 问题描述
 
 双击Table单元格修改内容，利用ajax局部更新后，再次点击就不能修改了
 
-##解决办法
+## 解决办法
 
 原来方法
 
@@ -17,11 +17,11 @@ tags: [Jquery]
 
 	$(".scrollBody").on("dblclick",".table_txt",function(){
 
-##说明
+## 说明
 
 使用 on() 方法添加的事件处理程序适用于当前及 `未来的元素（比如由ajax创建的新元素）` 。
 
-##语法
+## 语法
 
 	$(selector).on(event,childSelector,data,function,map)
 

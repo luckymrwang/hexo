@@ -3,7 +3,7 @@ date: 2015-06-04 13:14:58
 tags: [Mac,Hexo]
 ---
 
-##流程
+## 流程
 
 - 首先 Hexo 是基于 Node.js 的，所以必须安装 Node.js
 
@@ -14,13 +14,13 @@ tags: [Mac,Hexo]
 
 - Hexo 提交部署 Github 需要使用 Git 工具，所以需要安装 Git，用Homebrew 安装
 
-##具体详情
+## 具体详情
 
-###1.安装Homebrew
+### 1.安装Homebrew
 
 	ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)”
 
-###2.安装Node.js
+### 2.安装Node.js
 
 **2.1** 第一种方式，Homebrew安装
 

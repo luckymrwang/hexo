@@ -34,13 +34,13 @@ tags: [Kafka]
 
 	`clientPort=2181（kafka-zookeeper的port；一般用2181这个默认端口即可）`
 
-###启动
+### 启动
 
 	nohup bin/zookeeper-server-start.sh config/zookeeper.properties >zookeeper.nohup &
 
-##kafka-broker
+## kafka-broker
 
-###配置
+### 配置
 
 - server.properties
 
@@ -60,13 +60,13 @@ tags: [Kafka]
 
 	`num.io.threads=（看情况，一般用默认即可）`
 
-###启动
+### 启动
 
 	nohup bin/kafka-server-start.sh config/server.properties >server.nohup &
 
-##测试
+## 测试
 
-###第一次安装的测试
+### 第一次安装的测试
 
 	bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 
@@ -82,15 +82,15 @@ tags: [Kafka]
 
 *会显示刚才生产的消息，如上的则是显示hello plattech*
 
-###以后每次重启服务的测试
+### 以后每次重启服务的测试
 
 执行上边的第4步骤即可
 
-##游戏是否生产数据的测试（需要等go的kafka consumer部署之后）
+## 游戏是否生产数据的测试（需要等go的kafka consumer部署之后）
 
 	http://tank-360-kafka.raysns.com:65400/v1/query/get_offset?type=last
 
-##亚马逊云特殊情况
+## 亚马逊云特殊情况
 
 	yum install java装的是1.6的，会报内存错误
 
@@ -98,11 +98,11 @@ tags: [Kafka]
 
 	sudo yum install java-1.8.0-openjdk
 
-##其他情况
+## 其他情况
 
 运行bin/kafka-server-start.sh后找不到domain，需要将本机本地domain加到/etc/hosts里
 
-##出错处理
+## 出错处理
 
 如果在第三步测试的时候出现“SLF4J”错误时，说明kafka的libs库里少了一个jar包
 

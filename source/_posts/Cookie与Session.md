@@ -2,7 +2,7 @@ title: "Cookie与Session"
 date: 2015-05-23 10:51:39
 tags:
 ---
-##Cookie的基本概念和设置
+## Cookie的基本概念和设置
 
 Cookie在远程浏览器端存储数据并以此跟踪和识别用户的机制。从实现上说，Cookie是存储在客户端上的一小段数据（4k），浏览器（客户端）通过HTTP协议和服务器端进行Cookie交互。
 

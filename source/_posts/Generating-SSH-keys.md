@@ -5,7 +5,7 @@ tags: [SSH]
 description: 
 ---
 
-##Step 1: Check for SSH keys
+## Step 1: Check for SSH keys
 ``` bash
 $ ls -al ~/.ssh
 # Lists the files in your .ssh directory, if they exist
@@ -16,7 +16,7 @@ Check the directory listing to see if you already have a public SSH key. By defa
 `>` id_ed25519.pub
 `>` id_rsa.pub
 <!-- more -->
-##Step 2: Generate a new SSH key
+## Step 2: Generate a new SSH key
 - With Git Bash still open, copy and paste the text below. Make sure you substitute in your GitHub email address.
 ``` bash
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
@@ -40,7 +40,7 @@ The key fingerprint is:
 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com
 ```
 
-##Step 3: Add your SSH key to your account
+## Step 3: Add your SSH key to your account
 Copy the SSH key to your clipboard. If your key is named id_dsa.pub, id_ecdsa.pub or id_ed25519.pub, then change the filename below from id_rsa.pub to the one that matches your key:
 ``` bash
 $ clip < ~/.ssh/id_rsa.pub
@@ -66,7 +66,7 @@ Add the copied key to GitHub:
 
 - Confirm the action by entering your GitHub password.
 
-##Step 4: Test the connection
+## Step 4: Test the connection
 To make sure everything is working, you'll now try to SSH into . When you do this, you will be asked to authenticate this action using your password, which is the SSH key passphrase you created earlier.
 
 - Open Git Bash and enter:

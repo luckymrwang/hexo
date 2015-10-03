@@ -3,13 +3,13 @@ date: 2015-06-03 14:35:04
 tags: [Apache,Nginx]
 ---
 
-##概念
+## 概念
 
 **虚拟主机 (Virtual Host)** 是在同一台机器搭建属于不同域名或者基于不同 IP 的多个网站服务的技术. 可以为运行在同一物理机器上的各个网站指配不同的 IP 和端口, 也可让多个网站拥有不同的域名。
 
 *重要：Apache 在接受到请求时，首先会默认第一个VirtualHost，然后再找匹配的，如果没有匹配的，就是第一个VirtualHost起作用。因此在httpd.conf中，将<Dicrectory />（这个是所有目录的默认配置)和<Direcotry /opt/lampp/htdocs>的权限，都是deny from all.作为默认。*
 <!-- more -->
-##Redhat Enterprise Linux
+## Redhat Enterprise Linux
 
 Redhat Enterprise Linux (包括 CentOS Linux), 是使用最广的 Linux 服务器, 大量的网站应用都部署在其上。
 
@@ -97,7 +97,7 @@ Redhat Enterprise Linux (包括 CentOS Linux), 是使用最广的 Linux 服务�
 
 		sudo apachectl restart
 
-##Nginx 虚拟主机
+## Nginx 虚拟主机
 
 - 进入 /usr/local/nginx/conf/vhost 目录, 创建虚拟主机配置文件 demo.neoease.com.conf ({域名}.conf)
 
@@ -123,7 +123,7 @@ Redhat Enterprise Linux (包括 CentOS Linux), 是使用最广的 Linux 服务�
 
 		service nginx restart
 
-##让 Nginx 虚拟主机支持 PHP
+## 让 Nginx 虚拟主机支持 PHP
 
 - 在前面第 2 步的虚拟主机服务对应的目录加入对 PHP 的支持, 这里使用的是 FastCGI, 修改如下
 

@@ -6,7 +6,7 @@ tags: [PHP]
 
 本文将探讨两种具体的实现方法, 并对不同的方法做简单的性能对比.
 <!-- more -->
-##经典cURL并发机制及其存在的问题
+## 经典cURL并发机制及其存在的问题
 经典的cURL实现机制在网上很容易找到, 比如参考[PHP在线手册](http://php.net/manual/en/function.curl-multi-init.php)在线手册，不过这里我附上我们BI项目中使用的多并发方式:
 
 	public static function multi_curl_new($requests) {
