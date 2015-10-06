@@ -1,6 +1,6 @@
 title: ajax更新数据不能多次修改的问题
 date: 2015-07-13 19:27:34
-tags: [Jquery]
+tags: [jQuery]
 ---
 
 ## 问题描述

@@ -1,6 +1,6 @@
 title: 用JQuery实现最简单的随屏幕滚动的层
 date: 2015-08-16 14:50:23
-tags: [JQuery]
+tags: [jQuery]
 ---
 
 首先需要一个绝对定位的元素
