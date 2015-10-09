@@ -96,6 +96,4 @@ tags: [CI]
 之前的内存递增已解决。
 
 当你执行大数据时，记得`$save_queries = FALSE;`
-
-
-
+或在model中加入 $this->db->save_queries = FALSE;
