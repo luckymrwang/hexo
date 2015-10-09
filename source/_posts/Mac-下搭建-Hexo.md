@@ -1,6 +1,7 @@
 title: "Mac 下搭建 Hexo"
 date: 2015-06-04 13:14:58
 tags: [Mac,Hexo]
+toc: true
 ---
 
 ## 流程
@@ -36,7 +37,7 @@ tags: [Mac,Hexo]
 
 **2.3** 第三种方式，下载源码(http://nodejs.org/download/)，编译执行同上
 
-###3.安装Hexo
+### 3.安装Hexo
 
 **3.1** 第一种方式，用node.js自带npm安装
 
@@ -46,7 +47,7 @@ tags: [Mac,Hexo]
 
 **3.2** 第二种方式，下载源码(http://www.nodejs.org/download/)，编译执行
 
-###4.安装git
+### 4.安装git
 
 **4.1** 第一种方式，Homebrew安装
 	

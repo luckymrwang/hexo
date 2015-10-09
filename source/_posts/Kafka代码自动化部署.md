@@ -9,7 +9,7 @@ kafka代码自动化部署的操作在deploy机器上。当前整个deploy比较
 
 ## 辅助查看deploy机器已经配置了哪些kafka机器的信息
 
-在http://203.195.156.75/deploy/里登陆后，在配置总览→查看ansible配置文件，这个页面其实就是现实ansible配置文件里的东西。
+在 http://203.195.156.75/deploy/ 里登陆后，在配置总览→查看ansible配置文件，这个页面其实就是现实ansible配置文件里的东西。
 <!-- more -->
 ## 添加一个kafka机器信息到deploy机器的ansible配置文件里(root权限)
 

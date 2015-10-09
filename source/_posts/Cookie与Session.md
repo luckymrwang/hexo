@@ -1,6 +1,6 @@
 title: "Cookie与Session"
 date: 2015-05-23 10:51:39
-tags:
+tags: [Cookie,Session]
 ---
 ## Cookie的基本概念和设置
 
@@ -21,7 +21,7 @@ Cookie独立于语言存在，也就是说，不论是PHP还是JSP种下的Cooki
 
 *[PHP和JavaScript对Cookie的操作]、[Cookie存储机制及应用]、[Cookie跨域与P3P协议]、[本地存储localStorage]具体内容可参照《PHP核心技术与最佳实践》*
 
-##Session的基本概念和设置
+## Session的基本概念和设置
 
 和Cookie一样，Session也是一个通用标准，但在不同的语言中实现有所不同。针对Web网站来说，Session指用户在浏览某个网站时，从进入网站到浏览器关闭这段时间内的会话。使用Session可以在网站的上下文不同页面间传递变量、用户身份认证、程序状态记录等。常见的形式就是配合Cookie使用，实现保存用户登录状态功能。和Cookie一样，session_start()必须在程序最开始执行，前面不能有任何输出内容，否则就会出现警告。
 
@@ -35,5 +35,5 @@ sessionID实际上是在客户端和服务器端之间通过HTTP Request和HTTP 
 
 对于访问量大的站点，用默认的Session存储方式并不合适，较优的方法是数据库。
 
-##两者用例
+## 两者用例
 具体实例对比可以[查看这里](http://www.php1.cn/article/9404.html)

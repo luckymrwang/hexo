@@ -11,6 +11,7 @@ tags: [Kafka]
 2. kafka的文件存储
 3. mysql少量存储
 4. go编译后的http api程序bi-kafka-consumer-go
+
 <!-- more -->
 ### 游戏滚服数据存储（坦克项目负责）
 

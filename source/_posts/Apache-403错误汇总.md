@@ -37,7 +37,7 @@ tags: [Apache,Mac]
 
 看似没有问题，但根据上面这条理论，必须保证 **/Users**、**/Users/sino**、**/Users/sino/Documents** 这几个层级的目录都是755权限，然而我的Documents权限却不是这样，所以修改后再次测试时已经正常了。
 
-##总结
+## 总结
 
 1. 查看错误日志
 2. linux系统中文件的权限要特别注意
