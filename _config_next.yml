@@ -8,7 +8,7 @@ subtitle: Write down what I think.
 description: 学习总结 思考感悟 知识管理
 author: luckymrwang
 author_title: 'Web Developer & Designer'
-avatar: /img/author.jpg
+avatar: /images/author.jpg
 #location: 'BeiJing, China'
 #follow: https://github.com/luckymrwang
 language: zh-Hans
@@ -67,7 +67,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
-theme: yilia
+theme: next
 
 exclude_generator:
 Plugins:
@@ -101,22 +101,37 @@ stylus:
 # Disqus
 # disqus_shortname: hexo-theme-icarus
 
+# DuoShuo
+duoshuo_shortname: luckymrwang
+
+#baidu_analytics
+baidu_analytics: ec2a44ace31b8d8b179065de4a6565cd
+
 #swiftype_key
 swiftype_key: _6SBV4mxyrk-kF9qqt8T
 
 # Social links
 social:
   GitHub: https://github.com/luckymrwang
-  #Twitter:
+  #Twitter: 
   Weibo: http://weibo.com/iuckymrwang
-  #DouBan:
-  #ZhiHu:
+  #DouBan: 
+  #ZhiHu: 
 
 
 # Creative Commons 4.0 International License.
 # http://creativecommons.org/
 # Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
 creative_commons: by-nc-sa
+
+# Google Webmaster tools verification setting
+# See: https://www.google.com/webmasters/
+google_site_verification: RI5hZTIk8g_rDngCzxDBUrJ9IfGA4gOrceVlc-6OUW0
+
+
+# Google Analytics
+# Google分析ID
+google_analytics: UA-68490584-1
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
