@@ -16,7 +16,7 @@ tags: [CentOS,MySQL]
 成功安装之后重启mysql服务
 
 ```
-# service mysqld restart
+# systemctl restart mysqld.service
 ```
 
 初次安装mysql是root账户是没有密码的

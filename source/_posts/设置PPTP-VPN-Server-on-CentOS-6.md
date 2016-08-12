@@ -38,7 +38,7 @@ ms-dns 8.8.4.4
 
 	vultr1  pptpd   P@$$w0rd  *
 
-*\*表示所有ip*
+*星号表示来自所有的ip都可以接入*
 
 
 #### 修改`/etc/pptpd.conf`
@@ -117,4 +117,9 @@ COMMIT`必须在`-A INPUT -p tcp -m state --state NEW -m tcp --dport 1723 -j ACC
 
 	service pptpd start
 	
+	
+```
+chkconfig pptpd on       //开机启动pptp vpn服务
+chkconfig iptables on    //开机启动iptables
+```
 引自[这里](https://www.vultr.com/docs/setup-pptp-vpn-server-on-centos-6)
