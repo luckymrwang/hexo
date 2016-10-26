@@ -126,3 +126,73 @@ func (c *Consumer) GetUserLogs(bigAppId, zid, uid string, startTime, endTime int
 	return mapCh
 }
 ```
+
+### offset取值
+
+```go
+func (c *Consumer) GetStartEndOffsets(startTime, endTime int64) (startOffset, endOffset int64) {
+	client, err := sarama.NewClient([]string{brokerList}, nil)
+	helpers.CheckError(err)
+
+	nowstamp := time.Now().Unix()
+
+	defer client.Close()
+
+	// startTime为这天的00:00:00，这样取的offset就不会少查这天的数据
+	// GetOffset取的是离传入时间最近的那个segment的第一个offset
+	startOffset, err = client.GetOffset(topic, 0, startTime*1000)
+	if err != nil {
+		// 如果有些时候用时间拿不到合适segment的offset，就拿第一个offset
+		startOffset, err = client.GetOffset(topic, 0, sarama.OffsetOldest)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println("get offset by time error, then get first offset:", startOffset)
+	}
+
+	lastTime := endTime
+	for {
+		lastTime = lastTime + 43200
+		endOffset, err = client.GetOffset(topic, 0, lastTime*1000)
+		if err != nil || lastTime >= nowstamp {
+			// 如果有些时候用时间拿不到合适segment的offset，就拿最后的offset
+			endOffset, err = client.GetOffset(topic, 0, sarama.OffsetNewest)
+			if err != nil {
+				panic(err)
+			}
+			fmt.Println("get offset by time error, then get last offset:", endOffset)
+
+			// 最后一个位置修正为最后一个有数据的位置
+			endOffset = endOffset - 1
+			break
+		}
+
+		cmdstr := fmt.Sprintf(`/data/plattech/kafka_2.9.2-0.8.1.1/bin/kafka-simple-consumer-shell.sh --broker-list %s --topic game_server --partition 0 --offset %d --max-messages 1`, brokerList, endOffset)
+		fmt.Println(cmdstr)
+		out, err := exec.Command("/bin/sh", "-c", cmdstr).Output()
+		if err != nil {
+			continue
+		}
+
+		dec := json.NewDecoder(strings.NewReader(string(out)))
+
+		var msg map[string]interface{}
+		dec.UseNumber()
+		if err := dec.Decode(&msg); err != nil {
+			log.Fatal(err)
+		}
+
+		tm, err := msg["time"].(json.Number).Int64()
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if tm >= endTime {
+			break
+		}
+
+	}
+
+	return startOffset, endOffset
+}
+```
