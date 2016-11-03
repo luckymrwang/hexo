@@ -1,0 +1,141 @@
+# Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: iBlog
+subtitle: Write down what I think.
+description: 学习总结 思考感悟 知识管理
+author: luckymrwang
+author_title: 'Web Developer & Designer'
+avatar: /images/author.jpg
+#location: 'BeiJing, China'
+#follow: https://github.com/luckymrwang
+language: zh-Hans
+timezone:
+since: 2014 # The start year showing in your copyright section.
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: https://github.com/luckymrwang
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  tab_replace:
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 15
+pagination_dir: page
+
+# Extensions
+## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
+## Themes: https://github.com/hexojs/hexo/wiki/Themes
+theme: next
+
+exclude_generator:
+Plugins:
+- hexo-generator-feed
+- hexo-generator-sitemap
+
+#Feed Atom
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+
+#sitemap
+sitemap:
+  path: sitemap.xml
+
+# Markdown
+## https://github.com/chjj/marked
+markdown:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
+
+# Stylus
+stylus:
+  compress: false
+# Disqus
+# disqus_shortname: hexo-theme-icarus
+
+# DuoShuo
+duoshuo_shortname: luckymrwang
+
+#baidu_analytics
+baidu_analytics: ec2a44ace31b8d8b179065de4a6565cd
+
+#swiftype_key
+swiftype_key: _6SBV4mxyrk-kF9qqt8T
+
+# Social links
+social:
+  GitHub: https://github.com/luckymrwang
+  #Twitter: 
+  Weibo: http://weibo.com/iuckymrwang
+  #DouBan: 
+  #ZhiHu: 
+
+
+# Creative Commons 4.0 International License.
+# http://creativecommons.org/
+# Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
+creative_commons: by-nc-sa
+
+# Google Webmaster tools verification setting
+# See: https://www.google.com/webmasters/
+google_site_verification: RI5hZTIk8g_rDngCzxDBUrJ9IfGA4gOrceVlc-6OUW0
+
+
+# Google Analytics
+# Google分析ID
+google_analytics: UA-68490584-1
+
+# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repository: git@github.com:luckymrwang/luckymrwang.github.io.git
+  branch: master
