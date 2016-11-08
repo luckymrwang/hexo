@@ -14,7 +14,7 @@ tags: [Kafka, Go]
 通过`kakfa`官方提供的命令行工具，取出用户日志，然后再利用系统`grep`命令筛选出符合条件的数据，此时数据为`json`流，之后将`json`流数据循环解析过滤出最终数据
 
 <!-- more -->
-####（部分代码）展示：
+#### （部分代码）展示：
 
 ```go
 func (c *Consumer) GetUserLogs(bigAppId, zid, uid string, startTime, endTime int64) (msgs []map[string]interface{}) {
