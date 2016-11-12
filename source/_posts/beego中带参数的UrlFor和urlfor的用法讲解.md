@@ -1,6 +1,6 @@
-title: beego中带参数的UrlFor和urlfor的用法讲解
+title: Beego中带参数的UrlFor和urlfor的用法讲解
 date: 2016-07-31 14:12:52
-tags: [beego,go]
+tags: [Beego,Go]
 toc: true
 ---
 
