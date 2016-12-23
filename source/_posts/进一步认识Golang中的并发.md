@@ -29,8 +29,8 @@ func main() {
 			defer wg.Done() //任务完成，将任务队列中的任务数量-1，其实.Done就是.Add(-1)
 			fmt.Println(shownum)
 		}(i)
-		wg.Wait() //.Wait()这里会发生阻塞，直到队列中所有的任务结束就会解除阻塞
 	}
+	wg.Wait() //.Wait()这里会发生阻塞，直到队列中所有的任务结束就会解除阻塞
 }
 ```
 

@@ -9,10 +9,13 @@ tags: [Nginx]
 
 从 EPEL 源安装 Nginx：
 
-	yum -y install nginx
-	
+```
+yum -y install nginx
+```
+
 备份配置文件，然后根据你的需要进行配置：
 
+```
     cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig
     vim /etc/nginx/nginx.conf
     # This number should be, at maximum, the number of CPU cores on your system.
@@ -104,18 +107,23 @@ tags: [Nginx]
     gzip_proxied expired no-cache no-store private auth;
 	gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/   xml;
     gzip_disable "MSIE [1-6].";
+```
 
 启动 Nginx 并配置起机自动加载。
 
+```
 	service nginx start
 	chkconfig nginx on
+```
 	
 配置 Tsung 并启动测试，测试差不多 10 分钟左右就能测试到服务器的峰值能力，具体的时间与你的 Tsung 配置相关。
 
+```
 	[root@loadnode1 ~] vim ~/.tsung/tsung.xml
       <server host="YOURWEBSERVER" port="80" type="tcp"/>
       
 	tsung start
+```
 	
 你觉得测试结果已经够了的情况下，通过 ctrl+c 退出，之后使用我们之前配置的别名命令 treport 查看测试报告。
 
@@ -129,6 +137,7 @@ WEB 服务器调优，第二部分：TCP 协议栈调优
 
 下面的配置项，我建议每次只修订其中一项，之后用网络性能测试工具 netperf、iperf 或是用我类似的测试脚本 cluster-netbench.pl 对服务器进行多次测试。
 
+```
 	yum -y install netperf iperf
 	
 	vim /etc/sysctl.conf
@@ -156,9 +165,11 @@ WEB 服务器调优，第二部分：TCP 协议栈调优
     net.ipv4.tcp_rmem = 4096 87380 16777216
     net.ipv4.tcp_wmem = 4096 65536 16777216
     net.ipv4.tcp_congestion_control = cubic
+```
 
 每次修订配置之后都需要执行以下命令使之生效.
-
+```
 	sysctl -p /etc/sysctl.conf
-	
+```
+
 别忘了在配置修订之后务必要进行网络 benchmark 测试，这样可以观测到具体是哪个配置修订的优化效果最明显。通过这种有效测试方法可以为你节省大量时间。
