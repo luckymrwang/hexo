@@ -21,7 +21,7 @@ $ brew install mongodb
 * 启动MongoDb（安装成功后命令行有提示）
 
 ```
-$ mongod --config /usr/local/etc/mongod.conf
+$ sudo mongod --config /usr/local/etc/mongod.conf
 ```
 
 * 连接到mongo
@@ -35,7 +35,9 @@ $ mongo
 
 * 下载 ［使用curl来下载二进制文件，也可以直接下载］
 
-> $curl -ohttps://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.2.4.tgz
+```
+$ curl -o https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.2.4.tgz
+```
 
 注：以上命令下载的是Mac OS X64位版本，根据操作系统不同可以有不同选择
 
@@ -78,8 +80,9 @@ mongo
 * 插入数据
 
 ```
-db.test.insert({'name':'test'}) WriteResult({ "nInserted" : 1 })
+db.test.insert({'name':'test'}) 
 ```
+> WriteResult({ "nInserted" : 1 })
 
 * 查看数据
 
