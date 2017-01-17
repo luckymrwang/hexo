@@ -5,20 +5,18 @@ tags: [Go笔记]
 
 list是一个双向链表。该结构具有链表的所有功能。
 
+<!-- more -->
+
 ```go
 type Element struct {
-
         // The value stored with this element.
         Value interface{}
         // contains filtered or unexported fields
 }
-```
 
-<!-- more -->
-
-```go
 func (e *Element) Next() *Element  //返回该元素的下一个元素，如果没有下一个元素则返回nil
 func (e *Element) Prev() *Element//返回该元素的前一个元素，如果没有前一个元素则返回nil。
+
 type List
 func New() *List //返回一个初始化的list
 func (l *List) Back() *Element //获取list l的最后一个元素

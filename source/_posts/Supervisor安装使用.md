@@ -32,7 +32,7 @@ supervisor 主要由两部分组成：
 
 	supervisord -c /etc/supervisord.conf
 	
-进入 supervisorctl 的 shell 界面
+### 进入 supervisorctl 的 shell 界面
 
 *Supervisorctl 是 supervisord 的一个命令行客户端工具，启动时需要指定与 supervisord 使用同一份配置文件，否则与 supervisord 一样按照顺序查找配置文件。*
 
@@ -84,10 +84,10 @@ celeryd: started
 
 ```
 [include]
-files = /etc/supervisor/conf.d/*.ini ; 可以是 *.conf 或 *.ini
+files = /etc/supervisor.d/*.ini ; 可以是 *.conf 或 *.ini
 ```
 
-然后在目录 /etc/supervisor/conf.d 下新建一个配置文件 celery.conf, 配置信息与上面的一致，效果 是一样的。
+然后在目录 /etc/supervisor.d 下新建一个配置文件 celery.conf, 配置信息与上面的一致，效果是一样的。
 
 ### 命令详解
 
