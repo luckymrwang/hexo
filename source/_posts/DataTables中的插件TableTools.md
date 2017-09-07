@@ -6,8 +6,10 @@ tags: [DataTables]
 TableTools是一个DataTables中的插件，它能够将table表中的数据拷贝到粘贴板，导出到excel甚至是pdf格式。
 
 [下载](https://www.datatables.net/download/packages)以及[使用方法](https://www.datatables.net/extensions/tabletools/)：*官网给出的初始化如下*
+
 <!-- more -->
 
+```js
 	//Example initialisation
 	$(document).ready( function () {
     	$('#example').dataTable( {
@@ -17,6 +19,7 @@ TableTools是一个DataTables中的插件，它能够将table表中的数据拷�
     	    }
     	} );
 	} );
+```
 
 ### 出现的问题及解决办法：
 
@@ -26,8 +29,10 @@ TableTools是一个DataTables中的插件，它能够将table表中的数据拷�
 - 原因：`sSwfPath`后面的`swf`文件没有引用到
 - 解决办法*这是用PHP输出的全路径*：
 
-	"sSwfPath": "<?php echo base_url(); ?>assets/swf/copy_csv_xls_pdf.swf"
-	
+```php
+"sSwfPath": "<?php echo base_url(); ?>assets/swf/copy_csv_xls_pdf.swf"
+```
+
 2.
 
 - 导出excel时中文乱码的
@@ -39,6 +44,7 @@ TableTools是一个DataTables中的插件，它能够将table表中的数据拷�
 
 - 自定义按钮以及文字描述
 
+```js
 	"tableTools": {
 		"sSwfPath": "<?php echo base_url(); ?>assets/swf/copy_csv_xls_pdf.swf",
 		"aButtons":[
@@ -47,3 +53,4 @@ TableTools是一个DataTables中的插件，它能够将table表中的数据拷�
 			{"sExtends":"print", "sButtonText":"打印预览"}
 		]
 	}
+```

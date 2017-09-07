@@ -5,8 +5,10 @@ tags: [PHP]
 ### 思路分析
 
 选择一个基准元素，通常选择第一个元素或者最后一个元素。通过一趟扫描，将待排序列分成两部分，一部分比基准元素小，一部分大于等于基准元素。此时基准元素在其排好序后的正确位置，然后再用同样的方法递归地排序划分的两部分。
+
 <!-- more -->
 
+```php
     $arr = array(12, 242, 3, 20, 11,50);
     function kuaisu($arr){
         $len = count($arr);
@@ -28,3 +30,6 @@ tags: [PHP]
         return array_merge($left, array($mark), $right);
     }
     echo implode(',', kuaisu($arr));
+```
+
+[快速排序的JavaScript实现](http://www.ruanyifeng.com/blog/2011/04/quicksort_in_javascript.html)

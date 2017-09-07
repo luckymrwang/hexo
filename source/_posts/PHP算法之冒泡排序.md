@@ -7,6 +7,7 @@ tags: [PHP]
 在要排序的一组数中，对当前还未排好的序列，从前往后对相邻的两个数依次进行比较和调整，让较大的数往下沉，较小的往上冒。即，每当两相邻的数比较后发现它们的排序与排序要求相反时，就将它们互换。
 <!-- more -->
 
+```php
     $arr = array(12, 242, 3, 20, 11,50);
     function maopao($arr){
        $len = count($arr);
@@ -22,3 +23,4 @@ tags: [PHP]
         return $arr;
     }
     echo implode(',', maopao($arr));
+```

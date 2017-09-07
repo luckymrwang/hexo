@@ -1,6 +1,6 @@
 title: Draggable时阻止单击click事件
 date: 2015-12-15 11:46:27
-tags: [jQurye]
+tags: [jQuery]
 ---
 
 Draggable时阻止单击事件

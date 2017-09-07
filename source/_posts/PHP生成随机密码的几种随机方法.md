@@ -14,6 +14,7 @@ toc: true
 
 该算法主要用到了两个函数，`mt_rand ( int $min , int $max )` 函数用于生成随机整数，其中 $min – $max 为 ASCII 码的范围，<!-- more -->这里取 33 -126 ，可以根据需要调整范围，如ASCII码表中 97 – 122 位对应 a – z 的英文字母，具体可参考 ASCII码表； `chr ( int $ascii )` 函数用于将对应整数 $ascii 转换成对应的字符
 
+```php
 	function create_password($pw_length = 8)
 	{
     	$randpwd = '';
@@ -26,6 +27,7 @@ toc: true
 
 	// 调用该函数，传递长度参数$pw_length = 6
 	echo create_password(6);
+```
 
 ## 方法二
 
@@ -35,6 +37,7 @@ toc: true
 
 3、重复第二步 n 次，可得长度为 n 的密码
 
+```php
 	function generate_password( $length = 8 ) {
     	// 密码字符集，可任意添加你需要的字符
     	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_ []{}<>~`+=,.;:/?|';
@@ -51,6 +54,7 @@ toc: true
 
     	return $password;
 	}
+```
 
 ## 方法三
 
@@ -60,6 +64,7 @@ toc: true
 
 3、根据已获取的键名数组 $keys，从数组 $chars 取出字符拼接字符串。该方法的缺点是相同的字符不会重复取。
 
+```php
 	function make_password( $length = 8 )
 	{
     	// 密码字符集，可任意添加你需要的字符
@@ -85,6 +90,7 @@ toc: true
 
     	return $password;
 	}
+```
 
 ## 方法四
 
@@ -94,16 +100,19 @@ toc: true
 
  3、将第二步加密的结果，截取 n 位即得想要的密码
 
+```php
 	function get_password( $length = 8 ) 
 	{
     	$str = substr(md5(time()), 0, 6);
     	return $str;
 	}
+```
 
 ## 时间效率对比
 
 我们使用以下PHP代码，计算上面的 4 个随机密码生成函数生成 6 位密码的运行时间，进而对他们的时间效率进行一个简单的对比。
 
+```php
 	<?php
 	function getmicrotime()
 	{
@@ -124,12 +133,15 @@ toc: true
  	// 输出运行总时间 
 	echo "执行时间 $time seconds";
 	?>
+```
 
 ## 最终结果
 
+```
 	 方法一：9.8943710327148E-5 秒
      方法二：9.6797943115234E-5 秒
      方法三：0.00017499923706055 秒
      方法四：3.4093856811523E-5 秒
+```
 
 *可以看出方法一和方法二的执行时间都差不多，方法四运行时间最短，而方法三的运行时间稍微长点。*
