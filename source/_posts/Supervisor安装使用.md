@@ -45,10 +45,11 @@ supervisor>
 由于目前没有添加任何需要管理的进程，所以 status 没有输出任何结果，接下来我们添加一个需要管理的进程 (以启动一个 celery 的 worker 为例)：
 
 ```
-[program:celeryd]
-command=celery worker --app=task -l info ; 启动命令
-stdout_logfile=/var/log/supervisor/celeryd_out.log ; stdout 日志输出位置
-stderr_logfile=/var/log/supervisor/celeryd_err.log ; stderr 日志输出位置
+[program:notify]
+directory=/data/go/src/celeryd ;
+command=/data/go/src/celeryd/notify ;
+stdout_logfile=/var/log/supervisor/notify_out.log ; stdout 日志输出位置
+stderr_logfile=/var/log/supervisor/notify_err.log ; stderr 日志输出位置
 autostart=true ; 在 supervisord 启动的时候自动启动
 autorestart=true ; 程序异常退出后自动重启
 startsecs=10 ; 启动 10 秒后没有异常退出，就当作已经正常启动
