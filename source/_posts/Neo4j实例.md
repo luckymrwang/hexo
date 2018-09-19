@@ -58,7 +58,6 @@ CREATE
 
 ![neo4j_3](/images/neo4j_3.png)
 
-
 这样数据库中一个电影、演员、导演、制片商的关系就创建出来了。官方示例后面代码的同样指令分别创建了电影：TheMatrixReloaded、TheMatrixRevolutions、TheDevilsAdvocate、AFewGoodMen等，然后又创建了与这些电影相关的演员、导演、制片商们之间的关系。
 
 通过上述的创建指令就把“电影关系图”实例创建出来了
@@ -116,6 +115,7 @@ MATCH (tom:Person {name: "Tom Hanks"})-[:ACTED_IN]->(tomHanksMovies) RETURN tom,
 ```sql
 match (p:Person{name:'Tom Hanks'})-[r:DIRECTED]-(movie:Movie) return p,movie
 ```
+
 - 查找谁导演了电影“Cloud Atlas”
 
 ```sql
@@ -137,12 +137,14 @@ MATCH (tom:Person {name:"Tom Hanks"})-[:ACTED_IN]->(m)<-[:ACTED_IN]-(coActors) R
 ```sql
 MATCH (people:Person)-[relatedTo]-(:Movie {title: "Cloud Atlas"}) RETURN people.name, Type(relatedTo), relatedTo
 ```
+
 上面指令首先匹配节点类型为Person的节点，然后匹配节点类型为Movie、节点属性为{title: “Cloud Atlas”}的节点，最后匹配他们两者之间存在某种关系（无论是导演还是演员关系）的情况，然后将人名、电影的关系类型、电影的关系同时返回。
 
 ```sql
 MATCH (people:Person)-[relatedTo]-(movie:Movie {title: "Cloud Atlas"}) RETURN people, movie
 
-// MATCH (p:Person)-[:ACTED_IN]->(movie:Movie{title:"Cloud Atlas"})<-[:DIRECTED]-(p1:Person) RETURN p1,p,movie
+// 另一种写法
+MATCH (p:Person)-[:ACTED_IN]->(movie:Movie{title:"Cloud Atlas"})<-[:DIRECTED]-(p1:Person) RETURN p1,p,movie
 ```
 
 #### 查询关系路径
@@ -155,7 +157,7 @@ MATCH (people:Person)-[relatedTo]-(movie:Movie {title: "Cloud Atlas"}) RETURN pe
 MATCH r=(p:Person{name:"Carrie-Anne Moss"})-[*1..3]-(p1:Person{name:"Lilly Wachowski"}) RETURN r
 ```
 
-![neo4j_5](neo4j_5.png)
+![neo4j_5](/images/neo4j_5.png)
 
 - 查询两人之间的间接关系的另外一种方式
 
@@ -183,7 +185,7 @@ RETURN p
 
 上面指令首先匹配节点类型我Person、属性为{name: “Kevin Bacon”}的节点，再匹配节点类型为Person、属性为{name: “Meg Ryan”}的节点，两者用[*]关系操作符相连代表两者存在任意深度的关系，然后使用shortestPath方法返回两者在所有深度关系遍历路径中最短的一条。返回结果如下图：
 
-![neo4j_4](neo4j_4.png)
+![neo4j_4](/images/neo4j_4.png)
 
 结果可以看出演员Meg Ryan与Tom Hanks同参演过Joe Versus the Volcano电影。而Tom Hanks与Kevin Bacon同参演过Apollo 13电影，这就是他们两者之间的最短关系路径。
 
@@ -214,7 +216,7 @@ MATCH (tom:Person {name:"Tom Hanks"})-[:ACTED_IN]->(m)<-[:ACTED_IN]-(coActors),
 RETURN tom, m, coActors, m2, cruise
 ```
 
-![neo4j_6](neo4j_6.png)
+![neo4j_6](/images/neo4j_6.png)
 
 
 引自[这里](http://www.ywnds.com/?p=11761)

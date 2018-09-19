@@ -204,7 +204,6 @@ MATCH (a:A) WHERE ... RETURN SUBSTRING(a.p1,0,10) AS p1
 
 ```sql
 MATCH (a:A) WHERE ... RETURN COUNT(*)
-
 RETURN MAX(a.age), MIN(a.age), AVG(a.age), SUM(a.age)
 ```
 
