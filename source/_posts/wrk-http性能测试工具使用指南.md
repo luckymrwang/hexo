@@ -92,6 +92,29 @@ Transfer/sec:    4.05MB （平均每秒读取数据4.05MB）
 
 以上使用12个线程400个连接，对baidu首页进行了30秒的压测，并要求在压测结果中输出响应延迟信息。
 
+### Post 接口测试
+
+首先需要准备一个lua文件
+
+```js
+wrk.method = "POST"
+wrk.body   = "foo=bar&baz=quux"
+wrk.headers["Content-Type"] = "application/x-www-form-urlencoded"
+```
+
+*可参照[github](https://github.com/wg/wrk/tree/master/scripts)上的示例*
+
+如测试：
+
+```js
+wrk.method = "POST"
+wrk.body   = '{"act":"v2/user/get","args":{"corp_id":"5c0f3633eb30ea2416a","auth":"WNwI1DePAf7ANU2hfDsOxUA4CsHxGee8J1hz0b0GdVpGhB/jrleUO1EqB76w+QMMFzMgV1ma1tycQx"}}'
+
+wrk -t4 -c2000 -d60s -T5s --script=post.lua --latency http://xxx.com
+
+```
+*这样就是模拟4个线程，2000个连接，在60s内，间隔5s 执行 post.lua 的请求*
+
 本文引自[这里](https://www.jianshu.com/p/28b613a6590c)
 
 
