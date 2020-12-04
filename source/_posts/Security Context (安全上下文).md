@@ -1,4 +1,7 @@
-# 容器 Security Context (安全上下文)
+title: 容器 Security Context (安全上下文)
+date: 2020-12-04 23:08:51
+tags: [Docker,Kubernetes]
+---
 用来限制容器对宿主节点的可访问范围，以避免容器非法操作宿主节点的系统级别的内容，使得节点的系统或者节点上其他容器组受到影响。
 
 Kubernetes 提供了三种配置 Security Context 的方法：
@@ -7,6 +10,7 @@ Kubernetes 提供了三种配置 Security Context 的方法：
 * Pod-level Security Context：应用到 Pod 内所有容器以及 Volume
 * Pod Security Policies（PSP）：应用到集群内部所有 Pod 以及 Volume
 
+<!-- more -->
 ## Container-level Security Context
 容器的定义中包含 securityContext 字段。通过指定该字段，可以为容器设定安全相关的配置。
 
@@ -38,7 +42,7 @@ spec:
 	  imagePullPolicy: IfNotPresent
     command: [ "sh", "-c", "sleep 1h" ]
 ```
-<!-- more -->
+
 创建该 Pod，并开始 Shell 进入容器
 
 ```
