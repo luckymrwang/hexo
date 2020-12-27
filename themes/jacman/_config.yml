@@ -40,7 +40,7 @@ index:
   excerpt_link: 阅读更多
 
 close_aside: false  #close sidebar in post page if true
-mathjax: false      #enable mathjax if true
+mathjax: true      #enable mathjax if true
 
 ### Creative Commons License Support, see http://creativecommons.org/ 
 ### you can choose: by , by-nc , by-nc-nd , by-nc-sa , by-nd , by-sa , zero
@@ -48,8 +48,8 @@ creative_commons: none
 
 #### Author information
 author:
-  intro_line1:  "Hello ,I'm luckymrwang."    ## your introduction on the bottom of the page
-  intro_line2:  ""  ## the 2nd line
+  intro_line1:  "不积跬步，无以至千里"    ## your introduction on the bottom of the page
+  intro_line2:  "不积小流，无以成江河"  ## the 2nd line
   weibo: iuckymrwang     ## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895
   weibo_verifier:  ## e.g. b3593ceb Your weibo-show widget verifier ,if you use weibo-show it is needed.
   tsina: iuckymrwang     ## e.g. 2176287895  Your weibo ID,It will be used in share button.
