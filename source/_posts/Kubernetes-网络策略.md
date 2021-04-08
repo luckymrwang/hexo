@@ -389,7 +389,7 @@ spec:
 
 防火墙管理员知道对数据包采取的操作(允许或拒绝)由与其匹配的第一个规则决定。但是在Kubernetes中，策略的顺序并不重要。默认的行为是，当没有定义策略时，允许所有通信，因此所有pod之间可以彼此通信。一旦定义了策略，每个至少被一个策略选择的pod，将根据选择它的策略的并集(逻辑或)进行隔离：
 
-![netpol](images/netpol.jpg)
+![netpol](/images/netpol.jpg)
 
 没有被任何策略选中的pod继续保持开放。你可以通过定义cleanup规则来改变这个行为。
 
@@ -628,7 +628,7 @@ spec:
 
 具有多个对象(主机、网络、组...)的防火墙规则被解释为逻辑或。例如，如果数据包的源匹配HOST_1或HOST_2，则应用此规则：
 
-![netpol](images/netpol2.jgp)
+![netpol](/images/netpol2.jpg)
 
 与之相反的是，在Kubernetes中，podSelector和namespaceSelector中的多个标签通过逻辑与进行组合。例如，这将选择同时具有标签role=db和version=v2的pod：
 
