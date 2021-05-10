@@ -6,9 +6,9 @@ tags: [Kubernetes]
 部署规划
 
 ```js
-10.211.55.18     k8s-master
-10.211.55.19     k8s-node1
-10.211.55.20     k8s-node2
+10.211.55.18     k8s-node1
+10.211.55.19     k8s-node2
+10.211.55.20     k8s-node3
 ```
 
 备注：第1步~第8步，所有的节点都要操作，第9、10步Master节点操作，第11步Node节点操作。 如果第9、10、11步操作失败，可以通过 kubeadm reset 命令来清理环境重新安装。
@@ -38,9 +38,9 @@ $ vim /etc/fstab  永久关闭
 ```js
 $ vim /etc/hosts
  添加如下内容：
-10.211.55.18     k8s-master
-10.211.55.19     k8s-node1
-10.211.55.20     k8s-node2
+10.211.55.18     k8s-node1
+10.211.55.19     k8s-node2
+10.211.55.20     k8s-node3
 ```
 
 ### 将桥接的IPV4流量传递到iptables 的链
@@ -151,8 +151,8 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 
 Then you can join any number of worker nodes by running the following on each as root:
 
-kubeadm join 10.211.55.18:6443 --token cbh6a5.frnkih2elp0y6r1n \
-    --discovery-token-ca-cert-hash sha256:31ce6e2eb4c2723daa451bae21e8754f346ed0c072729de6a40577df1b6c904f
+kubeadm join 10.211.55.18:6443 --token m5fkxk.kf136eeya8v8ye5u \
+    --discovery-token-ca-cert-hash sha256:3cf64ae72021e28adba5a7a99d2897b4f6a8a338997258027473cab4bf3d4f39
 ```
 
 建议至少2 cpu ,2G，非硬性要求，1cpu，1G也可以搭建起集群。但是：1个cpu的话初始化master的时候会报 [WARNING NumCPU]: the number of available CPUs 1 is less than the required 2部署插件或者pod时可能会报warning：FailedScheduling：Insufficient cpu, Insufficient memory如果出现这种提示，说明你的虚拟机分配的CPU为1核，需要重新设置虚拟机master节点内核数。
@@ -203,6 +203,9 @@ $ kubectl get node
 
 ```js
 $ kubeadm reset
+
+$ rm -rf /etc/kubernetes
+$ rm -rf /var/lib/etcd/
 ```
 
 ### Node节点加入集群
@@ -211,8 +214,8 @@ $ kubeadm reset
 复制上面命令，在node节点上执行
 
 ```js
-kubeadm join 10.211.55.18:6443 --token cbh6a5.frnkih2elp0y6r1n \
-    --discovery-token-ca-cert-hash sha256:31ce6e2eb4c2723daa451bae21e8754f346ed0c072729de6a40577df1b6c904f
+kubeadm join 10.211.55.18:6443 --token m5fkxk.kf136eeya8v8ye5u \
+    --discovery-token-ca-cert-hash sha256:3cf64ae72021e28adba5a7a99d2897b4f6a8a338997258027473cab4bf3d4f39
 ```
 
 如果一直卡在 “Running pre-flight checks” 上，则很可能是时间未同步，token失效导致
@@ -229,29 +232,12 @@ $ ntpdate time.nist.gov
 
 ```js
 $ kubeadm reset
+
+$ rm -rf /etc/kubernetes
+$ rm -rf /var/lib/etcd/
 ```
 
 然后再重新执行kubeadm join ... 操作
-如果出现如下错误提示：
-
-```
-[WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver id "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
-```
-
-- 更改docker的启动参数
-
-```js
-$ vim /usr/lib/systemd/system/docker.service
-#ExecStart=/usr/bin/dockerd
-ExecStart=/usr/bin/dockerd --exec-opt native.cgroupdriver=systemd
-```
-
-- 重启docker
-
-```js
-systemctl daemon-reload
-systemctl restart docker
-```
 
 执行成功后：
 
@@ -273,8 +259,8 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 
 ```js
 NAME         STATUS   ROLES                  AGE    VERSION
-k8s-master   Ready    control-plane,master   13m    v1.20.1
-k8s-node1    Ready    <none>                 4m8s   v1.20.1
+k8s-node1   Ready    control-plane,master   13m    v1.20.1
+k8s-node2    Ready    <none>                 4m8s   v1.20.1
 ```
 
 #### 如果token忘记了，则可以通过如下操作：
@@ -295,8 +281,8 @@ $ openssl x509 -pubkey -``in` `/etc/kubernetes/pki/ca``.crt | openssl rsa -pubin
 - 节点加入集群
 
 ```js
-kubeadm join 10.211.55.18:6443 --token sv94vt.uiuhhj4okyq44e4w \
-    --discovery-token-ca-cert-hash sha256:7292a95f774a7ceab45ddc3bc334ba61df87e37a039a1a7d083c36476dfdf95c 
+kubeadm join 10.211.55.18:6443 --token m5fkxk.kf136eeya8v8ye5u \
+    --discovery-token-ca-cert-hash sha256:3cf64ae72021e28adba5a7a99d2897b4f6a8a338997258027473cab4bf3d4f39 
 ```
 
 ### 测试kubernetes集群
@@ -318,8 +304,8 @@ $ kubectl get pod,svc -o wide
 - 添加node节点
 
 ```js
-kubeadm join 10.211.55.18:6443 --token cbh6a5.frnkih2elp0y6r1n \
-    --discovery-token-ca-cert-hash sha256:31ce6e2eb4c2723daa451bae21e8754f346ed0c072729de6a40577df1b6c904f
+kubeadm join 10.211.55.18:6443 --token m5fkxk.kf136eeya8v8ye5u \
+    --discovery-token-ca-cert-hash sha256:3cf64ae72021e28adba5a7a99d2897b4f6a8a338997258027473cab4bf3d4f39
 ```
 
 - 执行成功后会在node节点的/etc/kubernetes目录下出创建kubelet.conf和pki等文件信息，同一节点再次加入时需要清空该目录下的文件信息
@@ -342,15 +328,15 @@ drwxr-xr-x. 2 root root   20 4月  25 20:22 pki
 [root@k8s-3 ~]# kubectl  get node
 [root@centos-7-master ~]# kubectl  get node
 NAME         STATUS   ROLES                  AGE   VERSION
-k8s-master   Ready    control-plane,master   33m   v1.20.1
-k8s-node1    NotReady    <none>                 23m   v1.20.1
+k8s-node1   Ready    control-plane,master   33m   v1.20.1
+k8s-node2    NotReady    <none>                 23m   v1.20.1
 # 查看信息时，看到几个节点的状态都是NotReady，是因为还没有安装flannel插件，
 
 # 等待几分钟后的信息，查看node节点的docker镜像，自动下载flannel镜像并创建网卡信息 
 [root@centos-7-master ~]# kubectl  get node
 NAME         STATUS   ROLES                  AGE   VERSION
-k8s-master   Ready    control-plane,master   33m   v1.20.1
-k8s-node1    Ready    <none>                 23m   v1.20.1
+k8s-node1   Ready    control-plane,master   33m   v1.20.1
+k8s-node2    Ready    <none>                 23m   v1.20.1
 ```
 
 - 设置node的角色
@@ -360,8 +346,8 @@ k8s-node1    Ready    <none>                 23m   v1.20.1
 node/k8s-node1 labeled
 [root@centos-7-master ~]# kubectl  get node
 NAME         STATUS   ROLES                  AGE   VERSION
-k8s-master   Ready    control-plane,master   36m   v1.20.1
-k8s-node1    Ready    node                   27m   v1.20.1
+k8s-node1   Ready    control-plane,master   36m   v1.20.1
+k8s-node2    Ready    node                   27m   v1.20.1
 ```
 
 - 先将节点设置为维护模式(k8s-4是节点名称)
@@ -377,7 +363,7 @@ k8s-node1    Ready    node                   27m   v1.20.1
 node "k8s-node1" deleted
 [root@centos-7-master ~]# kubectl  get node
 NAME         STATUS   ROLES                  AGE   VERSION
-k8s-master   Ready    control-plane,master   36m   v1.20.1
+k8s-node1   Ready    control-plane,master   36m   v1.20.1
 ```
 
 #### 将Pod调度到Master节点
@@ -385,14 +371,68 @@ k8s-master   Ready    control-plane,master   36m   v1.20.1
 - 出于安全考虑，默认配置下Kubernetes不会将Pod调度到Master节点。如果希望将k8s-master也当作Node使用，可以执行如下命令：
 
 ```js
-kubectl taint node k8s-master node-role.kubernetes.io/master-
+kubectl taint node k8s-node1 node-role.kubernetes.io/master-
 ```
 
 - 其中k8s-master是主机节点hostname如果要恢复Master Only状态，执行如下命令：
 
 ```js
-kubectl taint node k8s-master node-role.kubernetes.io/master="":NoSchedule
+kubectl taint node k8s-node1 node-role.kubernetes.io/master="":NoSchedule
 ```
+
+*当只有一个master和一个node节点，在master可调度的情况下，node节点失联或者挂掉，node节点上的pod在k8s默认的检查时间之后并不会重新调度到master的情况*
+
+```go
+If the cluster contains 1 master and 1 worker and the nodeName of your master node is ending with "master"(e.g XXXmaster).
+The pod will not be evicted from the worker node.
+
+It is because the controller-manager does not take the node with nodeName ends with "master" as the worker node.
+kubernetes/pkg/controller/nodelifecycle/node_lifecycle_controller.go
+
+Lines 1004 to 1016 in 2adc8d7
+
+ func legacyIsMasterNode(nodeName string) bool { 
+ 	// We are trying to capture "master(-...)?$" regexp. 
+ 	// However, using regexp.MatchString() results even in more than 35% 
+ 	// of all space allocations in ControllerManager spent in this function. 
+ 	// That's why we are trying to be a bit smarter. 
+ 	if strings.HasSuffix(nodeName, "master") { 
+ 		return true 
+ 	} 
+ 	if len(nodeName) >= 10 { 
+ 		return strings.HasSuffix(nodeName[:len(nodeName)-3], "master-") 
+ 	} 
+ 	return false 
+ } 
+
+If all worker nodes are NotReady, the controller-manager will enter master disruption mode.
+Disruption mode ：#42733 (comment)
+
+Around August last year we introduced a protection against master machine network isolation, which prevents any evictions from happening if master can't see any healthy Node. It then assumes that it's not a problem with Nodes, but with itself and just don't do anything.
+
+I stop the kubelet on worker node and the controller-manager logs shows:
+
+I0126 15:19:20.901414       1 node_lifecycle_controller.go:1230] Controller detected that all Nodes are not-Ready. Entering master disruption mode.
+If you want your pod can be evicted from worker node in 1 master 1 worker cluster, you can:
+
+set LegacyNodeRoleBehavior feature gate on controller-manager to false, for example, edit the controller-manager manifest, which is located at /etc/kubernetes/manifests/kube-controller-manager.yaml on your master node
+...
+spec:
+  containers:
+  - command:
+    - kube-controller-manager
+    - --allocate-node-cidrs=true
+    - --feature-gates=LegacyNodeRoleBehavior=false  <-- add this line
+    - --authentication-kubeconfig=/etc/kubernetes/controller-manager.conf
+...
+
+rename the nodeName of your master node, do not ends with "master"
+```
+
+[Pods are not moved when Node in NotReady state](https://github.com/kubernetes/kubernetes/issues/55713)
+
+[Kubernetes recreate pod if node becomes offline timeout](https://stackoverflow.com/questions/53641252/kubernetes-recreate-pod-if-node-becomes-offline-timeout)
+
 
 
 
