@@ -19,7 +19,7 @@ tags: [Kubernetes]
 $ systemctl stop firewalld
 ```
 
-###  关闭selinux
+### 关闭selinux
 
 ```js
 $ setenforce 0
@@ -31,6 +31,13 @@ $ setenforce 0
 $ swapoff -a    临时关闭
 $ free             可以通过这个命令查看swap是否关闭了
 $ vim /etc/fstab  永久关闭
+```
+
+### 同步时间
+
+```bash
+yum install ntpdate
+ntpdate cn.pool.ntp.org
 ```
 
 ### 添加主机名与IP对应的关系
