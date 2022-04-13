@@ -282,7 +282,7 @@ $ kubeadm token create
 - 获取ca证书sha256编码hash值
 
 ```js
-$ openssl x509 -pubkey -``in` `/etc/kubernetes/pki/ca``.crt | openssl rsa -pubin -outform der 2>``/dev/null` `| openssl dgst -sha256 -hex | ``sed` `'s/^.* //'
+$ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
 ```
 
 - 节点加入集群
