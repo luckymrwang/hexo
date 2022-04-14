@@ -1,2 +1,2 @@
 # hexo
-Hexo iBlog
+[https://luckymrwang.github.io](https://luckymrwang.github.io/)
