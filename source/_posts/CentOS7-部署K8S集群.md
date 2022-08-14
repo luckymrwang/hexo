@@ -65,7 +65,7 @@ $ sysctl --system
 ```js
 1）下载并安装
 $ wget https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -O/etc/yum.repos.d/docker-ce.repo
-$ yum install docker-ce-20.10.2
+$ yum install docker-ce-20.10.17
 
 2）配置镜像加速
 mkdir -p /etc/docker
