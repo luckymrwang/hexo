@@ -398,7 +398,7 @@ docker run -d --name bcc \
     -v /etc/localtime:/etc/localtime:ro \
     --pid=host \
     --workdir /root/bcc/tools \
-    registry.cn-hangzhou.aliyuncs.com/denverdino/ebpf-for-mac sleep infinity
+    luckymrwang/ebpf-for-mac sleep infinity
 ```
 
 
