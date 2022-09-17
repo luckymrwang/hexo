@@ -173,7 +173,7 @@ BCC 安装成功后，我们再来安装 `bpftrace`。由于 Ubuntu 已经自带
 sudo apt install -y docker.io
 # 第二步，下载镜像后从中复制bpftrace二进制文件
 sudo docker pull quay.io/iovisor/bpftrace
-sudo docker run -v $(pwd):/output quay.io/iovisor/bpftrace /bin/bash -c "cp /usr/bin/bpftrace /output"
+sudo docker run --rm -v $(pwd):/output quay.io/iovisor/bpftrace /bin/bash -c "cp /usr/bin/bpftrace /output"
 ```
 
 安装成功后，你可以执行同样的 `sudo ./bpftrace -e 'tracepoint:syscalls:sys_enter_openat { printf("%s %s\n", comm, str(args->filename)); }'` 命令验证 `bpftrace` 的功能。
