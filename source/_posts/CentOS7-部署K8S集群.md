@@ -441,6 +441,37 @@ rename the nodeName of your master node, do not ends with "master"
 [Kubernetes recreate pod if node becomes offline timeout](https://stackoverflow.com/questions/53641252/kubernetes-recreate-pod-if-node-becomes-offline-timeout)
 
 
+### 证书过期
+
+#### 查看证书过期时间
+
+在 Master 节点上，执行 `kubeadm certs check-expiration` 命令，查看证书过期时间。
+
+#### 更新证书
+
+使用 ```kubeadm certs renew all``` 命令来更新证书。
+
+#### 更新 ~/.kube/config 文件
+
+```bash
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+sudo chmod 644 $HOME/.kube/config
+```
+
+#### kubelet client certificate
+
+执行如下命令生成新的 `kubelet.conf`	 配置文件
+
+```bash
+# $NODE 表示集群中的节点名称
+kubeadm kubeconfig user --org system:nodes --client-name system:node:$NODE --config=/etc/kubernetes/kubeadm-config.yaml > kubelet.conf
+
+cp -i kubelet.conf /etc/kubernetes/kubelet.conf
+systemctl restart kubelet
+```
+
+##### reboot node
 
 
 
