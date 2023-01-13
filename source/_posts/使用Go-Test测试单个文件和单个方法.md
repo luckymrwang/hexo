@@ -42,7 +42,7 @@ PASS
 ok  	command-line-arguments	0.007s
 ```
 
-测试单个函数：`$ go test -v hello_test.go -test.run TestHello`
+测试单个函数：`$ go test -v hello_test.go -run TestHello`
 
 ```
 
@@ -52,3 +52,5 @@ TestHello
 PASS
 ok  	command-line-arguments	0.008s
 ```
+
+默认是正则表达式的形式，如果精确某个函数： `$ go test -run '^TestLong$' -v`
