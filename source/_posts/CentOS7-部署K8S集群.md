@@ -449,7 +449,13 @@ rename the nodeName of your master node, do not ends with "master"
 
 #### 更新证书
 
-使用 ```kubeadm certs renew all``` 命令来更新证书。
+使用 
+
+```bash
+kubeadm certs renew all
+```
+
+命令来更新证书。
 
 #### 更新 ~/.kube/config 文件
 
@@ -461,7 +467,7 @@ sudo chmod 644 $HOME/.kube/config
 
 #### kubelet client certificate
 
-执行如下命令生成新的 `kubelet.conf`	 配置文件
+执行如下命令生成新的 `kubelet.conf` 配置文件
 
 ```bash
 # $NODE 表示集群中的节点名称
