@@ -20,7 +20,7 @@ tags: [Go]
 
 在服务器上安装Delve
 
-官网: [https://github.com/derekparker/delve](https://github.com/derekparker/delve), 安装方法请参照官方wiki
+官网: [https://github.com/go-delve/delve](https://github.com/go-delve/delve), 安装方法请参照官方wiki
 
 2、查看IDE说明
 程序的编译和启动尽量按照IDE的提示说明进行，在GoLand中点击菜单栏Run->EditConfigurations->+->GoRemote，我们将看到如下界面，中间为编译及启动说明
@@ -48,9 +48,15 @@ dlv --listen=:2345 --headless=true --api-version=2 --accept-multiclient exec ./d
 如果程序需要启动参数, 则在后面添加--
 
 ```go
-dlv --listen=:2345 --headless=true --api-version=2 --accept-multiclient exec ./demo -- -c=/config
+dlv --listen=:2345 --headless=true --api-version=2 --accept-multiclient exec ./demo -- --c=/config
 # 等同于
-./demo -c=/config
+./demo --c=/config
+```
+
+k8s Pod中启动如下：
+
+```go
+/usr/local/bin/dlv --listen=:2345 --headless=true --api-version=2 --accept-multiclient exec /usr/local/bin/apiserver -- --secure-port=443 --feature-gates=ShadowAPI=false,FeedInventory=true --anonymous-auth-supported=true --peer-port=8123 -v=3
 ```
 
 #### 方式2
