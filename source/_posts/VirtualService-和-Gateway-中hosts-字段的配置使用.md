@@ -149,6 +149,28 @@ Gateway 描述了一个负载均衡器，用于承载网格边缘的进入和发
 - CR `VirtualService` 通过 `gateways` 字段中的值与 CR `Gateway` 绑定
 - CR `Gateway` 通过 `hosts` 字段中的匹配的 `host` 值选择对应的 CR `VirtualService`
 
+## Gateway Port
+
+`gateway` 资源中的 `port` 是对应 `istio-system`命名空间下的访问地址`istio-ingressgateway`的端口，因为通过域名入口网关访问后，会经过 ipvs 转成 pod 地址，也就是 `istio-ingressgateway-69cd5bdb68-npggn`的地址，如果svc中对应的是 `80->8080` 那么进入该 pod 后的端口就是 `8080` 所以再经过 `http.8080` 的 `route->cluster->endpoint`，所以关键看 `listener` 的端口以及 `route` 中有没有该域名的配置。
+
+```js
+# listener
+istioctl proxy-config listener -n istio-system istio-ingressgateway-69cd5bdb68-npggn
+istioctl proxy-config listener -n istio-system istio-ingressgateway-69cd5bdb68-npggn --port 8080 -ojson
+# route
+istioctl proxy-config route -n istio-system istio-ingressgateway-69cd5bdb68-npggn
+istioctl proxy-config route -n istio-system istio-ingressgateway-69cd5bdb68-npggn --name http.8080 -ojson
+# cluster
+istioctl proxy-config clusters -n istio-system istio-ingressgateway-69cd5bdb68-npggn
+istioctl proxy-config clusters -n istio-system istio-ingressgateway-69cd5bdb68-npggn --fqdn httpbin.pang.svc.cluster.local -ojson
+# endpoint
+istioctl proxy-config endpoint -n istio-system istio-ingressgateway-69cd5bdb68-npggn
+istioctl proxy-config endpoint -n istio-system istio-ingressgateway-69cd5bdb68-npggn  --cluster "outbound|8000||httpbin.pang.svc.cluster.local"
+```
+
+- [How to expose custom ports on Istio ingress gateway](How to expose custom ports on Istio ingress gateway)
+
+
 参考：
 
 - [创建部署Gateway并使用网关暴露服务](https://www.cnblogs.com/renshengdezheli/p/16838966.html)
