@@ -99,5 +99,5 @@ stylus:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:luckymrwang/luckymrwang.github.io.git
+  repository: https://github.com/luckymrwang/luckymrwang.github.io
   branch: master

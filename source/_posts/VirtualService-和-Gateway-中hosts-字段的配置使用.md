@@ -168,7 +168,7 @@ istioctl proxy-config endpoint -n istio-system istio-ingressgateway-69cd5bdb68-n
 istioctl proxy-config endpoint -n istio-system istio-ingressgateway-69cd5bdb68-npggn  --cluster "outbound|8000||httpbin.pang.svc.cluster.local"
 ```
 
-- [How to expose custom ports on Istio ingress gateway](How to expose custom ports on Istio ingress gateway)
+- [How to expose custom ports on Istio ingress gateway](https://learncloudnative.com/blog/2022-08-01-istio-gateway)
 
 
 参考：

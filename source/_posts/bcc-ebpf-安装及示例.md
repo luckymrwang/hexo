@@ -393,6 +393,7 @@ $ sudo docker build -t bcc:0.0.1
 docker run -d --name bcc \
     --privileged \
     -v /lib/modules:/lib/modules:ro \
+    -v /sys/kernel/debug:/sys/kernel/debug:ro \
     -v /usr/src:/usr/src:ro \
     -v /boot:/boot:ro \
     -v /etc/localtime:/etc/localtime:ro \
